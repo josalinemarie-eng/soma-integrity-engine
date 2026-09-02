@@ -22,15 +22,15 @@ I approach safety design by mapping biological signal processing directly to sof
 The Soma engine acts as a middleware abstraction layer. It consumes inference signals, applies dynamic threshold parameters, and outputs structured audit records.
 
 ```
-[ Raw Model Output ] ---> ( Dendrites: Signal Input )
-│
-▼
-( Soma: Policy & Risk )
-- Auto-Approve (p >= 0.85)
-- Ambiguity Zone (0.50 <= p < 0.85)
-- Auto-Block   (p < 0.50)
-│
-▼
+[ Raw Model Output ] ---> ( Dendrites: Signal Input ) 
+                                  │
+                                  ▼
+                        ( Soma: Policy & Risk )
+                        - Auto-Approve  (p < 0.45)
+                        - Ambiguity Zone (0.45 <= p < 0.85) -> FLAG_FOR_REVIEW
+                        - Auto-Remove   (p >= 0.85)
+                                  │
+                                  ▼
 [ Auditable Action ] <--- ( Axon: Decision Router )
 ```
 ### Example Adjudication
