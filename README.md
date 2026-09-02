@@ -35,10 +35,10 @@ The Soma engine acts as a middleware abstraction layer. It consumes inference si
 
 ```
 
-# 1. Initialize the Soma engine with safety thresholds
+## 1. Initialize the Soma engine with safety thresholds
 soma = IntegrityEngine(auto_approve_threshold=0.85, review_threshold=0.50)
 
-# 2. Process content signals
+## 2. Process content signals
 decision = soma.adjudicate(content_id="post_123", probability=0.65)
 
 ```
@@ -51,7 +51,7 @@ decision = soma.adjudicate(content_id="post_123", probability=0.65)
   "timestamp": "2026-09-02T13:35:00Z"
 }
 ```
-# Core Architectural Principles
+## Core Architectural Principles
 
 Decoupled Logic: Keeps raw ML predictions separate from business policy so thresholds update dynamically without needing to retrain base models.
 
