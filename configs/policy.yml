@@ -1,1 +1,53 @@
+# ==============================================================================
+# SOMA Moderation Policy: THE FINAL METABOLIC BLUEPRINT
+# Version: 2.4.0
+# Objective: Clinical-Grade Content Toxicology
+# ==============================================================================
 
+version: "2.4.0"
+
+# --- 1. COGNITIVE ARCHITECTURE (System 1 vs System 2) ---
+# This ensures we build the "Slow Thinking" logic into the code.
+cognitive_architecture:
+  use_dual_process: true
+  uncertainty_window: 0.15          # If score is ±0.15 of threshold, trigger deep analysis
+  default_system_2_action: "FLAG_FOR_REVIEW"
+  enable_metabolic_tracing: true    # Required for the "Explainability" promise
+
+# --- 2. METABOLIC SENSITIVITY (The Dosage Rules) ---
+# This defines how "poisonous" a comment is based on exposure.
+metabolic_sensitivity:
+  acute_toxicity_limit: 0.85        # Immediate removal (High Dose)
+  chronic_toxicity_limit: 0.45      # Flagging for persistent low-level harm
+  potency_multiplier: 1.25          # Boosts score if adversarial intent is found
+
+# --- 3. PHARMACODYNAMIC CATEGORIES ---
+# Maps specific behaviors to unique thresholds and reasons.
+categories:
+  hate_speech:
+    threshold: 0.85
+    action: "ENFORCE_REMOVAL"
+    clinical_note: "High Systemic Toxicity: Dehumanizing signals detected."
+  
+  gaslighting_manipulation:
+    threshold: 0.55                 # Lower threshold because it's harder to spot
+    action: "QUARANTINE"
+    clinical_note: "Neurological Manipulation: Intent to distort reality."
+
+  harassment_targeted:
+    threshold: 0.65
+    action: "FLAG_FOR_REVIEW"
+    clinical_note: "Behavioral Toxicity: Pattern of targeted distress."
+
+# --- 4. TOXICOLOGICAL SIGNALS (Keywords) ---
+# High-signal markers used to determine the 'potency' of the content.
+toxicological_signals:
+  dehumanization: ["pest", "parasite", "scum", "unworthy", "inferior"]
+  adversarial: ["bypass", "override", "ignore rules", "hidden"]
+  gaslighting: ["delusional", "imagining", "overreacting", "crazy", "sensitive"]
+
+# --- 5. SYSTEMIC GUARDRAILS ---
+system_constraints:
+  max_latency_ms: 250
+  audit_trail_enabled: true
+  explainability_mode: "NEURO_LOGIC" # Forces the AI to explain 'why' 
