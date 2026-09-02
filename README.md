@@ -22,25 +22,28 @@ I approach safety design by mapping biological signal processing directly to sof
 The Soma engine acts as a middleware abstraction layer. It consumes inference signals, applies dynamic threshold parameters, and outputs structured audit records.
 
 ```
-[ Raw Model Output ] ---> ( Dendrites: Signal Input ) 
-                                  │
-                                  ▼
-                        ( Soma: Policy & Risk )
-                        - Auto-Approve (p >= 0.85)
-                        - Ambiguity Zone (0.50 <= p < 0.85)
-                        - Auto-Block   (p < 0.50)
-                                  │
-                                  ▼
+[ Raw Model Output ] ---> ( Dendrites: Signal Input )
+│
+▼
+( Soma: Policy & Risk )
+- Auto-Approve (p >= 0.85)
+- Ambiguity Zone (0.50 <= p < 0.85)
+- Auto-Block   (p < 0.50)
+│
+▼
 [ Auditable Action ] <--- ( Axon: Decision Router )
-
 ```
+### Example Adjudication
 
-## 1. Initialize the Soma engine with safety thresholds
+```python
+# 1. Initialize the Soma engine with safety thresholds
 soma = IntegrityEngine(auto_approve_threshold=0.85, review_threshold=0.50)
 
-## 2. Process content signals
+# 2. Process content signals
 decision = soma.adjudicate(content_id="post_123", probability=0.65)
+```
 
+JSON
 ```
 {
   "content_id": "post_123",
@@ -51,9 +54,7 @@ decision = soma.adjudicate(content_id="post_123", probability=0.65)
   "timestamp": "2026-09-02T13:35:00Z"
 }
 ```
-## Core Architectural Principles
-
+Core Architectural Principles
 Decoupled Logic: Keeps raw ML predictions separate from business policy so thresholds update dynamically without needing to retrain base models.
-
 Explainability & Auditability (XAI): Produces structured, deterministic logs for every adjudication to maintain clear audit trails for compliance.
-Uncertainty Management: Captures model ambiguity in middle-band probability scores and automatically routes edge cases to human-in-the-loop (HITL) workflows.
+Uncertainty Management: Captures model ambiguity in middle-band score zones, routing edge cases to human-in-the-loop (HITL) review processes.
