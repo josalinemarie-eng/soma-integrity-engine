@@ -36,11 +36,11 @@ The Soma engine acts as a middleware abstraction layer. It consumes inference si
 ### Example Adjudication
 
 ```python
-# 1. Initialize the Soma engine with safety thresholds
-soma = IntegrityEngine(auto_approve_threshold=0.85, review_threshold=0.50)
+# 1. Initialize the Soma engine with policy settings
+soma = IntegrityEngine(config_path="configs/policy.yml")
 
 # 2. Process content signals
-decision = soma.adjudicate(content_id="post_123", probability=0.65)
+decision = soma.adjudicate(content_id="post_123", probability=0.65, category="harassment_targeted")
 ```
 
 JSON
@@ -48,9 +48,9 @@ JSON
 {
   "content_id": "post_123",
   "model_probability": 0.65,
-  "adjudication": "REVIEW",
-  "policy_version": "v2.1",
-  "reason": "Ambiguity threshold met (0.50 <= p < 0.85)",
+  "adjudication": "FLAG_FOR_REVIEW",
+  "policy_version": "2.4.0",
+  "reason": "Harassment threshold met (p >= 0.65). Behavioral Toxicity: Pattern of targeted distress.",
   "timestamp": "2026-09-02T13:35:00Z"
 }
 ```
