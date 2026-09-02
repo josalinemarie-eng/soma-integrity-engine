@@ -32,3 +32,23 @@ The Soma engine acts as a middleware abstraction layer. It consumes inference si
                                   │
                                   ▼
 [ Auditable Action ] <--- ( Axon: Decision Router )ty in middle-band probability scores and automatically routes edge cases to human-in-the-loop (HITL) workflows.
+### High-Level API Interface
+
+```python
+from src.integrity_engine import IntegrityEngine
+
+# 1. Initialize the Soma engine with safety thresholds
+soma = IntegrityEngine(auto_approve_threshold=0.85, review_threshold=0.50)
+
+# 2. Process content signals
+decision = soma.adjudicate(content_id="post_123", probability=0.65)
+
+Sample Adjudication Output Schema
+{
+  "content_id": "post_123",
+  "model_probability": 0.65,
+  "adjudication": "REVIEW",
+  "policy_version": "v2.1",
+  "reason": "Ambiguity threshold met (0.50 <= p < 0.85)",
+  "timestamp": "2026-09-02T13:35:00Z"
+}
