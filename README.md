@@ -56,7 +56,8 @@ JSON
 ```
 ## Core Architectural Principles
 
-Decoupled Logic: Keeps raw ML predictions separate from business policy so thresholds update dynamically without needing to retrain base models.
+* Decoupled Logic: Keeps raw ML predictions separate from business policy so thresholds update dynamically without needing to retrain base models.
 
-Explainability & Auditability (XAI): Produces structured, deterministic logs for every adjudication to maintain clear audit trails for compliance.
-Uncertainty Management: Captures model ambiguity in middle-band score zones, routing edge cases to human-in-the-loop (HITL) review processes.
+* Explainability & Auditability (XAI): Produces structured, deterministic logs for every adjudication to maintain clear audit trails for compliance.
+ 
+** Uncertainty Management: Captures model ambiguity in middle-band score zones, routing edge cases to human-in-the-loop (HITL) review processes.
