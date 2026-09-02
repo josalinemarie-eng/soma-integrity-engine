@@ -50,3 +50,10 @@ decision = soma.adjudicate(content_id="post_123", probability=0.65)
   "reason": "Ambiguity threshold met (0.50 <= p < 0.85)",
   "timestamp": "2026-09-02T13:35:00Z"
 }
+```
+# Core Architectural Principles
+
+Decoupled Logic: Keeps raw ML predictions separate from business policy so thresholds update dynamically without needing to retrain base models.
+
+Explainability & Auditability (XAI): Produces structured, deterministic logs for every adjudication to maintain clear audit trails for compliance.
+Uncertainty Management: Captures model ambiguity in middle-band probability scores and automatically routes edge cases to human-in-the-loop (HITL) workflows.
