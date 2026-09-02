@@ -21,6 +21,7 @@ I approach safety design by mapping biological signal processing directly to sof
 
 The Soma engine acts as a middleware abstraction layer. It consumes inference signals, applies dynamic threshold parameters, and outputs structured audit records.
 
+```
 [ Raw Model Output ] ---> ( Dendrites: Signal Input ) 
                                   │
                                   ▼
@@ -32,6 +33,7 @@ The Soma engine acts as a middleware abstraction layer. It consumes inference si
                                   ▼
 [ Auditable Action ] <--- ( Axon: Decision Router )
 
+```
 
 # 1. Initialize the Soma engine with safety thresholds
 soma = IntegrityEngine(auto_approve_threshold=0.85, review_threshold=0.50)
