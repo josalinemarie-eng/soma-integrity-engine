@@ -41,6 +41,7 @@ soma = IntegrityEngine(auto_approve_threshold=0.85, review_threshold=0.50)
 # 2. Process content signals
 decision = soma.adjudicate(content_id="post_123", probability=0.65)
 
+```
 {
   "content_id": "post_123",
   "model_probability": 0.65,
